@@ -1,0 +1,677 @@
+global
+function math(context) {
+    return context.scopes.some(
+		s => s.startsWith("meta.math")
+	)
+	&& !context.scopes.some(
+		s => (
+			s.startsWith("comment")
+			|| s.startsWith("meta.definition.label")
+			|| s.startsWith("meta.reference.label")
+			|| s.startsWith("meta.text.normal.tex")
+		)
+	);
+}
+endglobal
+
+snippet mk "Inline math mode" A
+$$1$$0
+endsnippet
+
+snippet dk "Display math mode" A
+\[
+    $1
+\]$0
+endsnippet
+
+snippet qj "Align environment" A
+\begin{align}
+    $1
+\end{align}$0
+endsnippet
+
+context math(context)
+snippet `=> ` "\Rightarrow" A
+\Rightarrow$0
+endsnippet
+
+context math(context)
+snippet `<=>` "\Rightarrow" A
+\iff$0
+endsnippet
+
+context math(context)
+snippet `-> ` "\to" A
+\to$0
+endsnippet
+
+context math(context)
+snippet `\* ` "\times" A
+\times$0
+endsnippet
+
+context math(context)
+snippet // "Fraction simple" A
+\frac{$1}{$2}$0
+endsnippet
+
+context math(context)
+snippet `\~` "Fraction simple" A
+\approx 
+endsnippet
+
+context math(context)
+snippet `oo` "Superscript after number" A
+\infty 
+endsnippet
+
+context math(context)
+snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" A
+\frac{``rv = m[1]``}{$1}$0
+endsnippet
+
+context math(context)
+snippet `^.*\)/` "Fraction with ()" A
+``
+    let str = m[0];
+    str = str.slice(0, -1);
+    let lastIndex = str.length - 1;
+
+    let depth = 0;
+    let i = str.length - 1;
+
+    while (true) {
+        if (str[i] == ')') depth += 1;
+        if (str[i] == '(') depth -= 1;
+        if (depth == 0) break;
+        i -= 1;
+    }
+
+    let results = str.slice(0, i) + "\\frac{" + str.slice(i+1, -1) + "}";
+    results += '{' + snip.tabstop(1, "") + "} " + snip.tabstop(0, "");
+    rv = results;
+    ``
+endsnippet
+
+context math(context)
+snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)\^` "Superscript after number" A
+``rv=m[1]``^{$1}$0
+endsnippet
+
+context math(context)
+snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)_` "Superscript after number" A
+``rv=m[1]``_{   $1}$0
+endsnippet
+
+context math(context)
+snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)->` "Superscript after number" A
+\overrightarrow{``rv=m[1]``} $0
+endsnippet
+
+context math(context)
+snippet `\|\-` "Superscript after number" A
+\mapsto 
+endsnippet
+
+context math(context)
+snippet `<\-` "Superscript after number" A
+\in 
+endsnippet
+
+context math(context)
+snippet `sqrt` "Sine with auto exponent" A
+\sqrt{$1} $0
+endsnippet
+
+context math(context)
+snippet `>=` "Sine with auto exponent" A
+\geq
+endsnippet
+
+context math(context)
+snippet `<= ` "Sine with auto exponent" A
+\leq
+endsnippet
+
+context math(context)
+snippet `neg` "Superscript after number" A
+\neg 
+endsnippet
+
+context math(context)
+snippet ` ^ ` "Superscript after number" A
+\land
+endsnippet
+
+context math(context)
+snippet ` :V ` "Superscript after number" A
+\lor
+endsnippet
+
+
+context math(context)
+snippet `subs` "Superscript after number" A
+\subset
+endsnippet
+
+context math(context)
+snippet `!U` "Superscript after number" A
+\cup
+endsnippet
+
+context math(context)
+snippet `!C` "Superscript after number" A
+\cap
+endsnippet
+
+context math(context)
+snippet `sub=` "Superscript after number" A
+\subseteq
+endsnippet
+
+context math(context)
+snippet `lrp` "Left-Right parentheses" A
+\left($1\right)$0
+endsnippet
+
+context math(context)
+snippet `lrb` "Left-Right square brackets" A
+\left[$1\right]$0
+endsnippet
+
+context math(context)
+snippet `lrm` "Left-Right square brackets" A
+\left|$1\right|$0
+endsnippet
+
+context math(context)
+snippet `lrc` "Left-Right curly braces" A
+\left\{$1\right\}$0
+endsnippet
+
+context math(context)
+snippet `sin ` "Sine function" A
+\sin\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `cos` "Cosine function" A
+\cos\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `tan` "Tangent function" A
+\tan\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `sec` "Secant function" A
+\sec\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `csc` "Cosecant function" A
+\csc\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `cot ` "Cotangent function" A
+\cot\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `sin([a-zA-Z0-9])` "Sine with auto exponent" A
+\sin^{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `cos([a-zA-Z0-9])` "Sine with auto exponent" A
+\cos^{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `tan([a-zA-Z0-9])` "Sine with auto exponent" A
+\tan^{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `csc([a-zA-Z0-9])` "Sine with auto exponent" A
+\csc^{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `sec([a-zA-Z0-9])` "Sine with auto exponent" A
+\sec^{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `cot([a-zA-Z0-9])` "Sine with auto exponent" A
+\cot^{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `exp` "Sine with auto exponent" A
+\exp\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `log(\w+)` "Sine with auto exponent" A
+\log_{``rv=m[1]``}\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `ln` "Sine with auto exponent" A
+\ln\left($1\right) $0
+endsnippet
+
+context math(context)
+snippet `sum(\w+)` "Sine with auto exponent" A
+\sum_{i = ``rv=m[1]``}^{$1} $0
+endsnippet
+
+context math(context)
+
+# Lowercase Greek letters
+snippet `@a` "alpha" A
+\alpha
+endsnippet
+
+snippet `@b` "beta" A
+\beta
+endsnippet
+
+snippet `@g` "gamma" A
+\gamma
+endsnippet
+
+snippet `@d` "delta" A
+\delta
+endsnippet
+
+snippet `@e` "epsilon" A
+\epsilon
+endsnippet
+
+snippet `@z` "zeta" A
+\zeta
+endsnippet
+
+snippet `@h` "eta" A
+\eta
+endsnippet
+
+snippet `@t` "theta" A
+\theta
+endsnippet
+
+snippet `@i` "iota" A
+\iota
+endsnippet
+
+snippet `@k` "kappa" A
+\kappa
+endsnippet
+
+snippet `@l` "lambda" A
+\lambda
+endsnippet
+
+snippet `@m` "mu" A
+\mu
+endsnippet
+
+snippet `@n` "nu" A
+\nu
+endsnippet
+
+snippet `@x` "xi" A
+\xi
+endsnippet
+
+snippet `@o` "omicron" A
+\omicron
+endsnippet
+
+snippet `@p` "pi" A
+\pi
+endsnippet
+
+snippet `@r` "rho" A
+\rho
+endsnippet
+
+snippet `@s` "sigma" A
+\sigma
+endsnippet
+
+snippet `@u` "tau" A
+\tau
+endsnippet
+
+snippet `@f` "phi" A
+\phi
+endsnippet
+
+snippet `@c` "chi" A
+\chi
+endsnippet
+
+snippet `@y` "psi" A
+\psi
+endsnippet
+
+snippet `@w` "omega" A
+\omega
+endsnippet
+
+# Uppercase Greek letters (only valid LaTeX)
+snippet `@G` "Gamma" A
+\Gamma
+endsnippet
+
+snippet `@D` "Delta" A
+\Delta
+endsnippet
+
+snippet `@T` "Theta" A
+\Theta
+endsnippet
+
+snippet `@L` "Lambda" A
+\Lambda
+endsnippet
+
+snippet `@X` "Xi" A
+\Xi
+endsnippet
+
+snippet `@P` "Pi" A
+\Pi
+endsnippet
+
+snippet `@S` "Sigma" A
+\Sigma
+endsnippet
+
+snippet `@F` "Phi" A
+\Phi
+endsnippet
+
+snippet `@Y` "Psi" A
+\Psi
+endsnippet
+
+snippet `@W` "Omega" A
+\Omega
+endsnippet
+
+context math(context)
+
+snippet `:A` "Blackboard bold A" A
+\mathbb{A}
+endsnippet
+
+snippet `:B` "Blackboard bold B" A
+\mathbb{B}
+endsnippet
+
+snippet `:C` "Blackboard bold C" A
+\mathbb{C}
+endsnippet
+
+snippet `:D` "Blackboard bold D" A
+\mathbb{D}
+endsnippet
+
+snippet `:E` "Blackboard bold E" A
+\mathbb{E}
+endsnippet
+
+snippet `:F` "Blackboard bold F" A
+\mathbb{F}
+endsnippet
+
+snippet `:G` "Blackboard bold G" A
+\mathbb{G}
+endsnippet
+
+snippet `:H` "Blackboard bold H" A
+\mathbb{H}
+endsnippet
+
+snippet `:I` "Blackboard bold I" A
+\mathbb{I}
+endsnippet
+
+snippet `:J` "Blackboard bold J" A
+\mathbb{J}
+endsnippet
+
+snippet `:K` "Blackboard bold K" A
+\mathbb{K}
+endsnippet
+
+snippet `:L` "Blackboard bold L" A
+\mathbb{L}
+endsnippet
+
+snippet `:M` "Blackboard bold M" A
+\mathbb{M}
+endsnippet
+
+snippet `:N` "Blackboard bold N" A
+\mathbb{N}
+endsnippet
+
+snippet `:O` "Blackboard bold O" A
+\mathbb{O}
+endsnippet
+
+snippet `:P` "Blackboard bold P" A
+\mathbb{P}
+endsnippet
+
+snippet `:Q` "Blackboard bold Q" A
+\mathbb{Q}
+endsnippet
+
+snippet `:R` "Blackboard bold R" A
+\mathbb{R}
+endsnippet
+
+snippet `:S` "Blackboard bold S" A
+\mathbb{S}
+endsnippet
+
+snippet `:T` "Blackboard bold T" A
+\mathbb{T}
+endsnippet
+
+snippet `:U` "Blackboard bold U" A
+\mathbb{U} 
+endsnippet
+
+snippet `:V` "Blackboard bold V" A
+\mathbb{V} 
+endsnippet
+
+snippet `:W` "Blackboard bold W" A
+\mathbb{W} 
+endsnippet
+
+snippet `:X` "Blackboard bold X" A
+\mathbb{X} 
+endsnippet
+
+snippet `:Y` "Blackboard bold Y" A
+\mathbb{Y} 
+endsnippet
+
+snippet `:Z` "Blackboard bold Z" A
+\mathbb{Z} 
+endsnippet
+
+context math(context)
+snippet `;A` "Mathcal A" A
+\mathcal{A}
+endsnippet
+
+context math(context)
+snippet `;B` "Mathcal B" A
+\mathcal{B}
+endsnippet
+
+context math(context)
+snippet `;C` "Mathcal C" A
+\mathcal{C}
+endsnippet
+
+context math(context)
+snippet `;D` "Mathcal D" A
+\mathcal{D}
+endsnippet
+
+context math(context)
+snippet `;E` "Mathcal E" A
+\mathcal{E}
+endsnippet
+
+context math(context)
+snippet `;F` "Mathcal F" A
+\mathcal{F}
+endsnippet
+
+context math(context)
+snippet `;G` "Mathcal G" A
+\mathcal{G}
+endsnippet
+
+context math(context)
+snippet `;H` "Mathcal H" A
+\mathcal{H}
+endsnippet
+
+context math(context)
+snippet `;I` "Mathcal I" A
+\mathcal{I}
+endsnippet
+
+context math(context)
+snippet `;J` "Mathcal J" A
+\mathcal{J}
+endsnippet
+
+context math(context)
+snippet `;K` "Mathcal K" A
+\mathcal{K}
+endsnippet
+
+context math(context)
+snippet `;L` "Mathcal L" A
+\mathcal{L}
+endsnippet
+
+context math(context)
+snippet `;M` "Mathcal M" A
+\mathcal{M}
+endsnippet
+
+context math(context)
+snippet `;N` "Mathcal N" A
+\mathcal{N}
+endsnippet
+
+context math(context)
+snippet `;O` "Mathcal O" A
+\mathcal{O}
+endsnippet
+
+context math(context)
+snippet `;P` "Mathcal P" A
+\mathcal{P}
+endsnippet
+
+context math(context)
+snippet `;Q` "Mathcal Q" A
+\mathcal{Q}
+endsnippet
+
+context math(context)
+snippet `;R` "Mathcal R" A
+\mathcal{R}
+endsnippet
+
+context math(context)
+snippet `;S` "Mathcal S" A
+\mathcal{S}
+endsnippet
+
+context math(context)
+snippet `;T` "Mathcal T" A
+\mathcal{T}
+endsnippet
+
+context math(context)
+snippet `;U` "Mathcal U" A
+\mathcal{U}
+endsnippet
+
+context math(context)
+snippet `;V` "Mathcal V" A
+\mathcal{V}
+endsnippet
+
+context math(context)
+snippet `;W` "Mathcal W" A
+\mathcal{W}
+endsnippet
+
+context math(context)
+snippet `;X` "Mathcal X" A
+\mathcal{X}
+endsnippet
+
+context math(context)
+snippet `;Y` "Mathcal Y" A
+\mathcal{Y}
+endsnippet
+
+context math(context)
+snippet `;Z` "Mathcal Z" A
+\mathcal{Z}
+endsnippet
+
+context math(context)
+snippet `fa` "Blackboard bold Z" A
+\forall 
+endsnippet
+
+context math(context)
+snippet `ddx` "First derivative" A
+\frac{d $1}{dx}$0
+endsnippet
+
+context math(context)
+snippet `d(\w+)d(\w+)` "Derivative" A
+\frac{d^{``rv=m[1]``} $1}{d``rv=m[2]``^{``rv=m[1]``}}$0
+endsnippet
+
+context math(context)
+snippet `int(\w+)d(\w+)` "Derivative" A
+\int_{``rv=m[1]``}^{$1}$2d``rv=m[2]``
+endsnippet
+
+context math(context)
+snippet `lim(\w+)` "Derivative" A
+\lim_{``rv=m[1]`` \to $1} $0
+endsnippet
+
+context math(context)
+snippet `pr(\w+)pr(\w+)` "Derivative" A
+\frac{\partial^{``rv=m[1]``} $1}{\partial ``rv=m[2]``^{``rv=m[1]``}}$0
+endsnippet
+
+context math(context)
+snippet `prpr(\w+)` "Derivative" A
+\frac{\partial $1}{\partial x^{``rv=m[1]``}}$0
+endsnippet
