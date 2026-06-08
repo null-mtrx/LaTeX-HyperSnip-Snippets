@@ -43,7 +43,7 @@ After doing so, restart VS Code
 | 11 | Left-Right parentheses | `lrp` | $\left(\dots\right)$ |
 | 12 | Left-Right square brackets | `lrb` | $\left[\dots\right]$ |
 | 13 | Left-Right vertical bars (Magnitude/Absolute value) | `lrm` | $\left\|\dots\right\|$ |
-| 14 | Left-Right curly braces | `lrc` | $\left\{\dots\right\}$ |
+| 14 | Left-Right curly braces | `lrc` | $\{\dots\}$ |
 
 ### Basic Logic and Set Notation
 | Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
