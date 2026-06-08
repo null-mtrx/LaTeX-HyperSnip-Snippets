@@ -1,5 +1,21 @@
 # LaTeX Hypersnip Snippets
 
+## Introduction
+A bunch of $\LaTeX$ snippets which have massively sped up my workflow when working with $\LaTeX$ on VS Code.
+
+## Set up 
+To set up the config, first install the <a href="https://marketplace.visualstudio.com/items?itemName=draivin.hsnips">hypersnips</a> extension of VS Code
+```bash
+git clone https://github.com/null-mtrx/LaTeX-HyperSnip-Snippets
+
+cd .../LaTeX-HyperSnip-Snippets
+
+cp latex.hsnips ~/.config/Code/User/globalStorage/draivin.hsnips/hsnips
+
+```
+
+After doing so, restart VS Code
+
 ## Snippet Documentation
 ### Math Environment
 | Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
@@ -8,7 +24,11 @@
 | 2 | Display math mode | `dk` | `\[ ... \]` |
 | 3 | Align environment | `qj` | `\begin{align} ... \end{align}` |
 
+> [!NOTE]
+> The following snippets will only activate when typed in a math environment as shown above
+
 ### Basic Math Symbols
+
 | Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | Implies / Right arrow | `=> ` | $\Rightarrow$ |
