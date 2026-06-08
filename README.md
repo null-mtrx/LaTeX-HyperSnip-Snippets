@@ -18,7 +18,7 @@ After doing so, restart VS Code
 
 ## Snippet Documentation
 ### Math Environment
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | Inline math mode | `mk` | `$...$` |
 | 2 | Display math mode | `dk` | `\[ ... \]` |
@@ -29,7 +29,7 @@ After doing so, restart VS Code
 
 ### Basic Math Symbols
 
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | Implies / Right arrow | `=> ` | $\Rightarrow$ |
 | 2 | If and only if / Equivalent | `<=>` | $\iff$ |
@@ -46,7 +46,7 @@ After doing so, restart VS Code
 | 14 | Left-Right curly braces | `lrc` | $\{\dots\}$ |
 
 ### Basic Logic and Set Notation
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | Maps to | `\|-` | $\mapsto$ |
 | 2 | Element of / In | `<-` | $\in$ |
@@ -63,7 +63,7 @@ After doing so, restart VS Code
 | 13 | For all / Universal quantifier | `fa` | $\forall$ |
 
 ### Trigonometry and Logarithms
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | Sine function | `sin ` | $\sin\left(\dots\right)$ |
 | 2 | Cosine function | `cos` | $\cos\left(\dots\right)$ |
@@ -82,7 +82,7 @@ After doing so, restart VS Code
 | 15 | Natural logarithm | `ln` | $\ln\left(\dots\right)$ |
 
 ### Greek Letters
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | alpha | `@a` | $\alpha$ |
 | 2 | beta | `@b` | $\beta$ |
@@ -119,13 +119,13 @@ After doing so, restart VS Code
 | 33 | omega | `@w` | $\omega$ |
 
 ### Other Letter Formats
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | blackboard letter | `:L` | $\mathbb{L}$ |
 | 2 | caligraphy letter | `;L` | $\mathcal{L}$ |
 
 ### Calculus and Summation
-| Sno. | Snippet name (What the snippet is for) | Snippet format (like what to type to activate it) | Snippet output in LaTeX |
+| Sno. | Snippet name | Snippet format  | Snippet output in LaTeX |
 | :--- | :--- | :--- | :--- |
 | 1 | First derivative with respect to x | `ddx` | $\frac{d \dots}{dx}$ |
 | 2 | Higher-order derivative | `d<order>d<var>` | $\frac{d^{\text{order}} \dots}{d\text{var}^{\text{order}}}$ |
