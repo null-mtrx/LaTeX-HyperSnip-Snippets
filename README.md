@@ -4,7 +4,7 @@
 A bunch of $\LaTeX$ snippets which have massively sped up my workflow when working with $\LaTeX$ on VS Code.
 
 ## Set up 
-To set up the config, first install the <a href="https://marketplace.visualstudio.com/items?itemName=draivin.hsnips">hypersnips</a> extension of VS Code
+To set up the config, first install the <a href="https://marketplace.visualstudio.com/items?itemName=draivin.hsnips">Hypersnips</a> extension for VS Code
 ```bash
 git clone https://github.com/null-mtrx/LaTeX-HyperSnip-Snippets
 
